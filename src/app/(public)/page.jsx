@@ -1,12 +1,12 @@
-import React from "react";
+"use client"
 
-export default function Home() {
+import withAuth from "@/hoc/withAuth"
 
-  
+export const page = () => {
   return (
-    <div >
-      Home page
-  
-    </div>
-  );
+    <div>page</div>
+  )
 }
+
+
+export default withAuth(page)

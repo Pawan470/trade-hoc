@@ -1,0 +1,128 @@
+@import '../../../assets/theme/_var.scss';
+
+
+.btn-style,
+.btn-primary {
+    min-height: 66px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: $basefont;
+    border-radius: 10rem;
+    padding: 0.5rem 1.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    background-color: $baseclr;
+    border: 0;
+    text-transform: capitalize;
+    transition: all ease-in-out 0.3s;
+    min-width: 150px;
+    color: $white;
+    // background-size: 100% 150%;
+
+    @media (max-width:1599px) {
+        min-height: 66px;
+    }
+
+    @media (max-width:1199px) {
+        min-height: 56px;
+        font-size: 1.125rem;
+        font-weight: 500;
+    }
+
+    @media (max-width:767px) {
+        min-height: 46px;
+        font-size: 1rem;
+    }
+
+    &:hover {
+        background-color: $baseclrhover;
+        color: $white;
+    }
+
+    &.transparent {
+        background-color: transparent;
+        border: none;
+    }
+
+    &.white-btn {
+        background: $white;
+        color: $black;
+
+        &:hover {
+            background: $baseclr;
+            color: $white;
+        }
+    }
+
+    &.yellow-btn {
+        background-color: $yellow;
+        color: $white;
+
+        &:hover {
+            background-color: $baseclr;
+            color: $white;
+        }
+    }
+
+    &.gradient-btn {
+        background: linear-gradient(75deg, #00AEEF, #1f5aff 50.31%, #da00ff);
+        color: $white;
+
+        &:hover {
+            background: linear-gradient(75deg, #0043ff, #1f5aff 50.31%, #da00ff);
+            color: $white;
+        }
+    }
+
+    &.green-btn {
+        background-color: $green;
+        color: $white;
+
+        &:hover {
+            background-color: $greenbtnhover;
+            color: $white;
+        }
+    }
+
+    &.red-btn {
+        background-color: $redlightclr;
+        color: $white;
+
+        &:hover {
+            background-color: $redbghover;
+            color: $white;
+        }
+    }
+
+    &.border-btn {
+        background: transparent;
+        color: $white;
+        border:1px solid $baseclr;
+
+        &:hover {
+            background: $baseclr;
+            color: $white;
+        }
+    }
+
+    .onlyIcon {
+        margin-right: 15px;
+        display: inline-flex;
+    }
+
+    &:disabled, &.disabled {
+        background: $textclr;
+        color: $white;
+        cursor: not-allowed;
+        opacity: 1;
+    }
+}
+
+:disabled, .disabled {
+    background-color: #414c60;
+    color: $white;
+    cursor: not-allowed;
+    opacity: 1;
+}

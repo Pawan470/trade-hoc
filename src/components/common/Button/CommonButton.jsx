@@ -1,4 +1,4 @@
-// import './CommonButton.scss'
+import './CommonButton.scss'
 
 /**COMMON BUTTON WITH DYNAMIC PROPS */
 const CommonButton = (props) => {
