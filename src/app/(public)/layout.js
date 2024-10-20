@@ -1,13 +1,12 @@
 "use client";
-
-import Header from "@/components/common/Header";
 import { Fragment, useEffect } from "react";
-import { usePathname } from "next/navigation";
+import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
+import { usePathname } from "next/navigation";
 
 const Publiclayout = ({ children }) => {
   const pathname = usePathname();
-
+ 
   useEffect(() => {
     if (pathname === "/") {
       document.body.classList.add("home-page");

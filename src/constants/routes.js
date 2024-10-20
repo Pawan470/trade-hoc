@@ -4,5 +4,8 @@ export default {
     LOGIN : '/login',
     FORGET : '/forget',
     SIGNUP: "/signup",
+    OVERVIEW: "/account/overview"
+
+
 
 }

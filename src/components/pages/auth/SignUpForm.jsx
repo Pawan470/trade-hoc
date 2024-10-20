@@ -1,39 +1,27 @@
 "use client"
-
+import InputCustom from '@/components/common/Inputs/InputCustom';
+import CommonButton from '@/components/common/Button/CommonButton';
 import { useFormik } from 'formik';
 import { Form } from 'react-bootstrap';
-import * as Yup from 'yup';
-import CommonButton from "@/components/common/Button/CommonButton";
-import InputCustom from '@/components/common/Inputs/InputCustom';
-import NavLink from "@/components/common/NavLink";
-import { useRouter } from "next/navigation";
+import NavLink from '@/components/common/NavLink';
+import { useRouter } from 'next/navigation';
 import routes from '@/constants/routes';
 
-const LoginForm = () => {
-    const router = useRouter();
-    // CREATE LOGIN SCHEMA USING YUP
-    const loginSchema = Yup.object().shape({
-        // EMAIL & PASSWORD VALIDATION
-        password: Yup.string()
-            .min(8, 'Password is too short - should be 8 chars minimum.')
-            .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.')
-            .required('Passeword is Required'),
 
-        email: Yup.string()
-            .email('Invalid email')
-            .required('Invalid email'),
-    });
+
+
+const SignUpForm = () => {
+    const router = useRouter();
+
     const formik = useFormik({
         initialValues: {
             email: '',
             password: '',
         },
-        validationSchema: loginSchema,
         onSubmit: async () => {
-            console.log(loginSchema, "hello");
+            console.log( "hello");
         },
     });
-
 
     return (
         <>
@@ -75,22 +63,12 @@ const LoginForm = () => {
                         }
                     >
                     </InputCustom>
-                    <div className="Forgotpassoword text-center pt-2 mb-4 pb-2">
-                        <NavLink href="/forget">Forgot password or can&apos;t log in</NavLink>
-                    </div>
-
-                    {/* <div className="d-flex mb-4 pb-2">
-                        <FormCheck
-                            type="checkbox"
-                        />
-                        <p className="ms-3">I agree to your <Link to="#">terms & conditions</Link> and <Link to="#">privacy policy</Link></p>
-                    </div> */}
 
                     <div className="w-100">
-                        <CommonButton onClick={() => router.push("/account/overview")} type="submit" title="Log In" fluid />
+                        <CommonButton onClick={() => router.push(routes.HOME)} type="submit" title="Create Account" fluid />
                     </div>
                     <div className="anAccount mt-3 text-center">
-                        <h6><NavLink href={routes.SIGNUP}>Create a free TradeReply Account</NavLink></h6>
+                        <h6>Already have an account? <NavLink href={routes.LOGIN}>Login</NavLink></h6>
                     </div>
                 </Form>
             </div>
@@ -98,4 +76,4 @@ const LoginForm = () => {
     )
 }
 
-export default LoginForm
+export default SignUpForm
