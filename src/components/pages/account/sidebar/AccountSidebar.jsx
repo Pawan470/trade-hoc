@@ -6,6 +6,19 @@ import "./AccountSidebar.scss"
 import Image from "next/image"
 import routes from "@/constants/routes"
 
+
+const navItems = [
+  { href: routes.OVERVIEW, label: "Account Overview", icon: <SideEyeIcon /> },
+  { href: routes.DETAILS, label: "Account Details", icon: <UserIcon /> },
+  { href: routes.SUBSCRIPTIONS, label: "Subscriptions", icon: <DollerIcon /> },
+  { href: routes.SECURITY, label: "Security", icon: <SecurityIcon /> },
+  { href: routes.PRIVACY, label: "Privacy & Communication", icon: <LockIcon /> },
+  { href: routes.CONNECTIONS, label: "Connections", icon: <LinkIcon /> },
+  { href: routes.PAYMENTS, label: "Payment Methods", icon: <PaymentIcon /> },
+  { href: routes.TRANSACTIONS, label: "Transaction History", icon: <CartSideIcon /> },
+];
+
+
 const AccountSidebar = ({ className, isActive, toggleClass }) => {
 
   return (
@@ -22,15 +35,14 @@ const AccountSidebar = ({ className, isActive, toggleClass }) => {
             </button>
           </div>
         </div>
-        <ul>
-          <li><NavLink href={routes.OVERVIEW} ><span><SideEyeIcon /></span> Account Overview</NavLink></li>
-          <li><NavLink href="detail"><span><UserIcon /></span> Account Details</NavLink></li>
-          <li><NavLink href="subscriptions"><span><DollerIcon /></span> Subscriptions</NavLink></li>
-          <li><NavLink href="security"><span><SecurityIcon /></span> Security</NavLink></li>
-          <li><NavLink href="privacy"><span><LockIcon /></span> Privacy & Communication</NavLink></li>
-          <li><NavLink href="connections"><span><LinkIcon /></span> Connections</NavLink></li>
-          <li><NavLink href="payments"><span><PaymentIcon /></span> Payment Methods</NavLink></li>
-          <li><NavLink href="transactions"><span><CartSideIcon /></span> Transaction history</NavLink></li>
+        <ul> 
+        {navItems.map((item) => (
+        <li key={item.href}>
+          <NavLink href={item.href}>
+            <span>{item.icon}</span> {item.label}
+          </NavLink>
+        </li>
+      ))}
         </ul>
         <div className="Account_sidebar_bottom_link">
           <ul>

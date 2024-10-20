@@ -5,9 +5,8 @@ import { CheckIcon, PlusIcon, RightArrowIcon} from "@/assets/svgIcons/SvgIcon"
 import CommonBlackCard from "@/components/pages/account/CommonBlackCard"
 import CommonTable from "@/components/pages/account/CommonTable"
 import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
+import withAuth from "@/hoc/withAuth";
 import 'react-circular-progressbar/dist/styles.css';
-
-
 
 
 
@@ -169,4 +168,4 @@ const AccountOverview = () => {
   )
 }
 
-export default AccountOverview
+export default withAuth(AccountOverview)

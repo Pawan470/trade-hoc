@@ -1,0 +1,23 @@
+@import "../../../assets/theme/_var.scss";
+
+.custom_breadcrumb {
+    .breadcrumb {
+        li {
+            a {
+                color: $clrc5c5d5;
+
+                &:hover {
+                    color: $baseclr;
+                }
+            }
+
+            &.active {
+                color: $white;
+            }
+
+            &::before {
+                color: $white;
+            }
+        }
+    }
+}
