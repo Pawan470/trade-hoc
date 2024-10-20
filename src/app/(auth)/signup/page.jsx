@@ -7,6 +7,7 @@ import NavLink from '@/components/common/NavLink';
 import { RightArrowIcon } from '@/assets/svgIcons/SvgIcon';
 import routes from '@/constants/routes';
 import './signUp.scss';
+import Image from 'next/image';
 
 
 const SignUp = () => {
@@ -19,7 +20,7 @@ const SignUp = () => {
           </div>
           <div className='loginCommon_rightSide_formBox'>
             <div className='text-center mb-4 pb-xl-2'>
-              <img src={logo} alt="loginbg" />
+              <Image src={logo} alt="loginbg" />
             </div>
             <LoginHeading
               title="Sign up with"
