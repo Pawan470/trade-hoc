@@ -1,6 +1,7 @@
 import { Container } from "react-bootstrap";
 import loginbg from "../../assets/images/login-img.jpg";
 import Image from "next/image";
+import './authGlobals.scss'
 
 function AuthLayout({ children }) {
   return (

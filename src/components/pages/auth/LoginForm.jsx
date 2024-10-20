@@ -7,6 +7,7 @@ import CommonButton from "@/components/common/Button/CommonButton";
 import InputCustom from '@/components/common/Inputs/InputCustom';
 import NavLink from "@/components/common/NavLink";
 import { useRouter } from "next/navigation";
+import routes from '@/constants/routes';
 
 const LoginForm = () => {
     const router = useRouter();
@@ -22,7 +23,6 @@ const LoginForm = () => {
             .email('Invalid email')
             .required('Invalid email'),
     });
-    console.log(loginSchema);
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -34,9 +34,7 @@ const LoginForm = () => {
         },
     });
 
-    // function handleClick() {
-    //     navigate("verification");
-    // }
+
     return (
         <>
             <div className="loginForm">
@@ -78,7 +76,7 @@ const LoginForm = () => {
                     >
                     </InputCustom>
                     <div className="Forgotpassoword text-center pt-2 mb-4 pb-2">
-                        <NavLink href="/locate-account">Forgot password or can&apos;t log in</NavLink>
+                        <NavLink href="/forget">Forgot password or can&apos;t log in</NavLink>
                     </div>
 
                     {/* <div className="d-flex mb-4 pb-2">
@@ -92,7 +90,7 @@ const LoginForm = () => {
                         <CommonButton onClick={() => router.push("/")} type="submit" title="Log In" fluid />
                     </div>
                     <div className="anAccount mt-3 text-center">
-                        <h6><NavLink href="/signup">Create a free TradeReply Account</NavLink></h6>
+                        <h6><NavLink href={routes.SIGNUP}>Create a free TradeReply Account</NavLink></h6>
                     </div>
                 </Form>
             </div>
