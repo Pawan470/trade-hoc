@@ -68,3 +68,14 @@ export const hasValueInArray = (arr) => {
   if (!Array.isArray(arr) && arr.length > 0) return true;
   return false;
 };
+
+
+export const handleApiError = (error) => {
+  if (get(error, 'response.data')) {
+    return get(error, 'response.data');
+  } else if (get(error,"message")) {
+    return { message: get(error,"message") };
+  } else {
+    return { message: 'An unknown error occurred' };
+  }
+};
