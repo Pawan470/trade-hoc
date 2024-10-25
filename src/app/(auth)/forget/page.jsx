@@ -5,6 +5,7 @@ import LoginFooter from '@/components/pages/auth/LoginFooter';
 import LoginHeading from '@/components/pages/auth/LoginHeading';
 import ForgotForm from '@/components/pages/auth/ForgotForm';
 import { RightArrowIcon } from '@/assets/svgIcons/SvgIcon';
+import {  forgetPassword as forgetPasswordAPI } from '@/services/auth';
 import NavLink from '@/components/common/NavLink';
 import Image from 'next/image';
 import routes from '@/constants/routes';
