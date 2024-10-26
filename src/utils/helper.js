@@ -42,22 +42,22 @@ export const isValidEmail = (email) => {
   return re.test(email);
 };
 
-export const isEmpty = (value, defaultValue = null) => {
-  if (value == null) return defaultValue;
+export const isEmpty = (value) => {
+  if (value == null) return true;
 
   if (typeof value === "object") {
-    if (Object.keys(value).length === 0) return defaultValue;
+    if (Object.keys(value).length === 0) return true;
   }
 
   if (Array.isArray(value)) {
-    if (value.length === 0) return defaultValue;
+    if (value.length === 0) return true;
   }
 
   if (typeof value === "string") {
-    if (value.trim().length === 0) return defaultValue;
+    if (value.trim().length === 0) return true;
   }
 
-  return value;
+  return false;
 };
 
 export const validatePassword = (password) => {
