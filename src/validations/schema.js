@@ -16,14 +16,6 @@ export const loginSchema = Yup.object({
 });
 
 export const signupSchema = Yup.object({
-  firstName: Yup.string()
-    .trim()  // This ensures leading and trailing spaces are trimmed
-    .matches(/^[A-Za-z]+$/, errorMessages.FIRSTNAME_ALPHABETS_ONLY)
-    .required(errorMessages.FIRSTNAME_REQUIRED),
-  lastName: Yup.string()
-    .trim()
-    .matches(/^[A-Za-z]+$/, errorMessages.LASTNAME_ALPHABETS_ONLY)
-    .required(errorMessages.LASTNAME_REQUIRED),
   email: Yup.string()
     .trim()
     .email(errorMessages.EMAIL_INVALID)
@@ -36,9 +28,7 @@ export const signupSchema = Yup.object({
     .matches(/[a-z]/, errorMessages.PASSWORD_LOWERCASE)
     .matches(/[0-9]/, errorMessages.PASSWORD_NUMBER)
     .matches(/[!@#$%^&*]/, errorMessages.PASSWORD_SPECIAL_CHAR),
-  country: Yup.string()
-    .trim()
-    .required(errorMessages.COUNTRY_REQUIRED),
+ 
 });
 
 

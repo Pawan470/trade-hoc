@@ -1,0 +1,103 @@
+@import "../../assets/theme/_var.scss";
+
+.admin_layout {
+    display: flex;
+    flex-wrap: wrap;
+
+    &_sidebar {
+        background-color: $clr031940;
+        padding-bottom: 1rem;
+
+        @media (max-width: 767px) {
+            padding-bottom: 0;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        .admin_sidebar {
+            width: 280px;
+            background-color: $clr031940;
+            box-shadow: 5px 0px 10px 0px #00000026;
+            height: calc(100vh - 88px);
+            position: sticky;
+            top: 88px;
+            padding: 1.25rem 1rem;
+            overflow-y: auto;
+
+            @media (max-width: 1279px) {
+                width: 250px;
+                padding: 10px 10px;
+            }
+
+            @media (max-width: 991px) {
+                width: 80px;
+            }
+
+            @media (max-width: 767px) {
+                width: 100%;
+                position: relative;
+                top: auto;
+                height: auto;
+                padding: 0 50px;
+                overflow-y: hidden;
+                overflow-x: hidden;
+                display: flex;
+                justify-content: center;
+
+
+                &_wrapper {
+                    display: flex;
+                    overflow-x: hidden;
+                    overflow-y: hidden;
+                    padding: 10px 0;
+                    gap: 10px;
+                    max-width: 260px;
+                    width: 100%;
+
+                    .linkList {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    &_content {
+        padding: 30px 30px 5rem;
+        width: calc(100% - 280px);
+        background: linear-gradient(180deg, #073992 -15.02%, #0557A3 54.89%);
+
+        @media screen and (max-width: 1279px) {
+            padding: 20px 0 1.25rem;
+            width: calc(100% - 250px);
+
+            .container {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+        }
+
+        @media screen and (max-width: 991px) {
+            width: calc(100% - 80px);
+        }
+
+        @media screen and (max-width: 767px) {
+            width: 100%;
+        }
+    }
+
+    @media screen and (max-width: 1199px) {
+        .py-40 {
+            padding-top: 24px;
+            padding-bottom: 24px;
+        }
+
+        .pb-60 {
+            padding-bottom: 24px;
+        }
+
+        .pt-40 {
+            padding-top: 24px;
+        }
+    }
+}

@@ -1,4 +1,5 @@
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export const handleError = (error, options = { duration: 3000 }) => {
   if (typeof error === "object") {
@@ -71,11 +72,18 @@ export const hasValueInArray = (arr) => {
 
 
 export const handleApiError = (error) => {
-  if (get(error, 'response.data')) {
-    return get(error, 'response.data');
-  } else if (get(error,"message")) {
-    return { message: get(error,"message") };
-  } else {
-    return { message: 'An unknown error occurred' };
+  if (axios.isAxiosError(error)) {
+    if (error.response) {
+      const { status, data } = error.response;
+      return data.message || `Error: ${status} - ${data.error || 'Something went wrong'}`;
+    }
+
+    if (error.request) {
+      return 'No response received from server. Please check your network connection.';
+    }
+
+    return error.message;
   }
+
+  return 'An unexpected error occurred';
 };

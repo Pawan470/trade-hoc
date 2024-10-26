@@ -1,51 +1,73 @@
-// src/api/auth.js
 import axiosInstance from './axiosInstance';
 import { handleApiError } from '../utils/helper';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery , useMutation } from '@tanstack/react-query';
+import { APIs } from './getBackendApi';
 
 
 
-export const loginUser = async (data) => {
+const loginUser = async (body) => {
   try {
-    const response = await axiosInstance.post('/login', data);
+    const { data } = await axiosInstance.post(APIs.LOGIN, body);
+    return data;
+  } catch (error) {
+    throw handleApiError(error);
+  }
+};
+
+export const useLoginMutation = () => useMutation({
+  mutationFn: loginUser
+});
+
+
+export const signupUser = async (body) => {
+  try {    
+    const { data } = await axiosInstance.post(APIs.SIGNUP, body);
+    return data;
+  } catch (error) {
+    throw handleApiError(error);
+  }
+};
+
+export const useSignupMutation = () => useMutation({
+  mutationFn: signupUser
+});
+
+export const forgetPassword = async (body) => {
+  try {
+    const response = await axiosInstance.post('/forget-password', body);
     return response.data;
   } catch (error) {
     throw handleApiError(error);
   }
 };
 
-export const signupUser = async (data) => {
+export const getProfile = async (token) => {
   try {
-    const response = await axiosInstance.post('/signup', data);
-    return response.data;
+    const { data } = await axiosInstance.get(`/auth/profile` ,
+      { headers: {"Authorization" : `Bearer ${token}`} }
+    );
+    return data;
   } catch (error) {
     throw handleApiError(error);
   }
-};
+}
 
-export const forgetPassword = async (data) => {
-  try {
-    const response = await axiosInstance.post('/forget-password', data);
-    return response.data;
-  } catch (error) {
-    throw handleApiError(error);
-  }
-};
-
-
-export const useToGetProfile = ({ page }) =>  {
+export const useToGetProfile = (token, options) =>  {
 
   return useQuery({
     
-      queryKey: ['PRODUCTS', page],
+      queryKey: ['PROFILE'],
       queryFn: async () => {
         try {
-          const response = await axiosInstance.get(`/products/${page}`);
+          const response = await axiosInstance.get(`/auth/profile` ,
+            { headers: {"Authorization" : `Bearer ${token}`} }
+          );
           return response.data;
         } catch (error) {
           throw handleApiError(error);
         }
-      }
+      },
+      options
   })
   
 }

@@ -13,6 +13,11 @@ import CommonButton from "@/components/common/Button/CommonButton";
 import InputCustom from "@/components/common/Inputs/InputCustom";
 import { useRouter } from "next/navigation";
 import { loginSchema } from "@/validations/schema";
+import { useLoginMutation } from "@/services/auth";
+import useToHandleApiError from "@/hooks/useToHandleApiError";
+import { STORAGE_KEYS } from "@/constants";
+import { useSelector } from "@/store/Provider";
+import { LOGIN } from "@/store/action";
 
 
 const initialValues = {
@@ -22,9 +27,19 @@ const initialValues = {
 
 const Login = () => {
   const router = useRouter();
-  const handleSubmit =  (values) => {
-    console.log(values);
-    router.push("/account/overview");
+  const mutation = useLoginMutation()
+  const { action } = useSelector()
+  useToHandleApiError(mutation?.error);
+  
+
+  const handleSubmit =  async (values ) => {
+    const response = await mutation.mutateAsync(values)
+    if(response.token){
+      localStorage.setItem(STORAGE_KEYS.USER_TOKEN,JSON.stringify(response.token))
+      action(LOGIN)
+      router.push("/account/overview");
+    }
+    
   };
 
   return (
@@ -52,8 +67,8 @@ const Login = () => {
                   validationSchema={loginSchema}
                   onSubmit={handleSubmit}
                 >
-                  {({ values, handleChange, touched, errors }) => (
-                    <Form>
+                  {({ values, handleChange,handleBlur,handleSubmit, touched, errors }) => (
+                    <Form onSubmit={handleSubmit}>
                       <InputCustom
                         placeholder="Email"
                         className=""
@@ -61,6 +76,7 @@ const Login = () => {
                         name="email"
                         type="email"
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         autoFocus={true}
                         value={values.email}
                         isInvalid={touched.email && !!errors.email}
@@ -79,6 +95,7 @@ const Login = () => {
                         className=""
                         type="password"
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         autoFocus={true}
                         value={values.password}
                         isInvalid={touched.password && !!errors.password}
